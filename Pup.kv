@@ -1,0 +1,3041 @@
+<BaseMDNavigationItem>
+
+    MDNavigationItemIcon:
+        icon: root.icon
+
+    MDNavigationItemLabel:
+        text: root.text
+
+<Home>
+    MDBoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "images/HumanPup.png"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "The Pup's Cookbook"
+                        font_style: "Headline"
+                        role: "medium"
+                        halign: "center"
+                    MDListItemSupportingText:
+                        text: "Satisfy all your wants!"
+                        font_style: "Headline"
+                        role: "small"
+                        halign: "center"
+
+<Cookbook>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press: 
+                        root.manager.current = "Breakfast"
+                        
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Breakfast"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Lunch"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Lunch"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Dinner"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Dinner"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Desserts"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Desserts"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Drinks"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Drinks"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Breads"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Breads"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Meats"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Meats"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press: 
+                        root.manager.current = "Sauces"
+                        
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Sauces"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+
+<Search>
+    MDFloatLayout:
+        size_hint: .9, .09
+        pos_hint: {"center_x": .5, "center_y": .93}
+        radius: [10]
+        TextInput:
+            id: search_text
+            hint_text: "Recipe search..."
+            pos_hint: {"center_x": .5, "center_y": .5}
+            height: self.minimum_height
+            multiline: False
+            padding: 15
+        MDIconButton:
+            icon: "magnify"
+            pos_hint: {"center_x": .9, "center_y": .5}
+            on_release:
+                app.search(search_text.text)
+
+<SearchResults>
+    name: "search_results"
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint: {"center_y": .95}
+        on_release:
+            screen_manager.current = "Search"
+    MDLabel:
+        id: search_label
+        text: ""
+        pos_hint: {"center_y": .95}
+        halign: "center"
+        font_size: "20sp"
+
+<About>
+    MDBoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "images/About.jpg"
+            size: "125dp", "250dp"
+            halign: "center"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "In the memory of Zac and Con"
+                    MDListItemSupportingText:
+                        text: "Rest in Peace"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "We will always remember"
+                    MDListItemSupportingText:
+                        text: "April 5th, 2024"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "If you ever need help or support,"
+                    MDListItemSupportingText:
+                        text: "please reach out"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Suicide hotline:"
+                    MDListItemSupportingText:
+                        text: "call or text 988"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Domestic Violence Hotline:"
+                    MDListItemSupportingText:
+                        text: "Call 800-799-7233"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Human Trafficking Hotline"
+                    MDListItemSupportingText:
+                        text: "Call 888-373-7888"
+                
+                
+<Login>
+    MDLabel:
+        text: "Welcome"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: "blue"
+        font_style: "Display"
+        role: "large"
+        pos_hint: {"center_x": .5, "center_y": .8}
+
+    MDTextField:
+        id: email
+        mode: "outlined"
+        size_hint_x: None
+        width: "240dp"
+        pos_hint: {"center_x": .5, "center_y": .65}
+
+        MDTextFieldLeadingIcon:
+            icon: "account"
+
+        MDTextFieldHintText:
+            text: "email"
+
+        MDTextFieldTrailingIcon:
+            icon: "information"
+
+    MDTextField:
+        id: password
+        mode: "outlined"
+        size_hint_x: None
+        width: "240dp"
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDTextFieldLeadingIcon:
+            icon: "eye"
+
+        MDTextFieldHintText:
+            text: "Password"
+
+        MDTextFieldTrailingIcon:
+            icon: "information"
+
+    MDButton:
+        style: "filled"
+        pos_hint: {"center_x": .30, "center_y": .35}
+
+        MDButtonText:
+            text: "Register"
+
+    MDButton:
+        style: "filled"
+        pos_hint: {"center_x": .70, "center_y": .35}
+
+        MDButtonText:
+            text: "Login"
+
+<Breakfast>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "SausagePatties"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Sausage Patty"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Waffles"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Waffles"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Pancakes"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pancakes"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "BiscuitsGravy"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Biscuits & Gravy"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+<Lunch>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "PizzaBombs"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pizza Bombs"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "PizzaGrilledCheese"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pizza"
+                            adaptive_size: True
+                            pos: "12dp", "25dp"
+                            bold: True
+                        MDLabel:
+                            text: "Grilled Cheese"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+
+<Dinner>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "ChilliChicken"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Chilli Chicken"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+<Desserts>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "CreamsicleCookies"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Creamsicle Cookies"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "WhiteCakeMix"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "White Cake Mix"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+<Drinks>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+<Breads>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Biscuits"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Biscuits"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "LoafBread"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Loaf Bread"
+                            adaptive_size: True
+                            pos: "12dp", "12dp"
+                            bold: True
+
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "PizzaDough"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pizza Dough"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+<Meats>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Pepperoni"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pepperoni"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Sausage"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Sausage"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+<Sauces>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 2
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "Cookbook"
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Back"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "GarlicAndGingerPaste"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Garlic and"
+                            adaptive_size: True
+                            pos: "12dp", "25dp"
+                            bold: True
+                        MDLabel:
+                            text: "Ginger Paste"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+                MDCard:
+                    style: "elevated"
+                    padding: "4dp"
+                    size_hint: None, None
+                    size: "175dp", "175dp"
+                    on_press:
+                        root.manager.current = "PizzaSauce"
+
+                    MDRelativeLayout:
+
+                        MDIconButton:
+                            icon: "dots-vertical"
+                            pos_hint: {"top": 1, "right": 1}
+
+                        MDLabel:
+                            text: "Pizza Sauce"
+                            adaptive_size: True
+                            pos: "12dp", "10dp"
+                            bold: True
+
+<SausagePatties>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Sausage Patties"
+                        font_style: "Display"
+                        role: "small"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 Pound Pork Minced"
+                    MDListItemSupportingText:
+                        text: "sub chicken or turkey"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Dried Ground Sage"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: " 1/2 tsp Dried Thyme"
+                    MDListItemSupportingText:
+                        text: "Crushed with fingers"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp onion powder"
+                    MDListItemSupportingText:
+                        text: "sub more Garlic Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Garlic Powder"
+                    MDListItemSupportingText:
+                        text: "sub more Onion Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsb Black Pepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 tsb Cooking/Kosher Salt"
+                    MDListItemSupportingText:
+                        text: "or 1/2 tsp table salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Sugar"
+                    MDListItemSupportingText:
+                        text: "Optional"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tsbp Olive Oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ketchup"
+                    MDListItemSupportingText:
+                        text: "for serving"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Instructions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Make Patties"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place Ingredients in a bowl"
+                    MDListItemSupportingText:
+                        text: "Mix well with hands"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Divide into 8 pieces"
+                    MDListItemSupportingText:
+                        text: "form into 1 cm patties"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Make shallow dent in middle"
+                    MDListItemSupportingText:
+                        text: "Prevents patty from doming"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cook for 4 Minutes"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Heat oil in large pan"
+                    MDListItemSupportingText:
+                        text: "use non stick pan"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cook the patties 2 mins"
+                    MDListItemSupportingText:
+                        text: "on each side until golden"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Transfer to paper towel"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Serve!"
+                    MDListItemTrailingCheckbox:
+
+<Waffles>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Waffles"
+                        font_style: "Display"
+                        role: "small"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 1/4 cup Flour"
+                    MDListItemSupportingText:
+                        text: "Plain or All Purpose"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 1/2 tbsp Caster Sugar"
+                    MDListItemSupportingText:
+                        text: "Sub granulated or regular"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pinch of Kosher Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tsp Baking Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 1/3 Cup Milk"
+                    MDListItemSupportingText:
+                        text: "full fat and lightly warm"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Vanilla Extract"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 Large Eggs"
+                    MDListItemSupportingText:
+                        text: "Room Temp"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 cup Unsalted Butter"
+                    MDListItemSupportingText:
+                        text: "melted and slightly cooled"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Topping Options"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Butter"
+                    MDListItemSupportingText:
+                        text: "softened"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Maple Syrup"
+                    MDListItemSupportingText:
+                        text: "or honey"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Icing or Powdered Sugar"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Strawberry or other Fruit"
+                    MDListItemSupportingText:
+                        text: "Whipped Cream with it"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Whisk Dry Ingredients"
+                    MDListItemSupportingText:
+                        text: "Place flour salt sugar baking powder"
+                    MDListItemTertiaryText:
+                        text: "in bowl, whisk to combine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Whisk in wet"
+                    MDListItemSupportingText:
+                        text: "Add milk eggs and vanilla"
+                    MDListItemTertiaryText:
+                        text: "Whisk to combine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add Melted Butter"
+                    MDListItemSupportingText:
+                        text: "whisk until lump free"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Recommended Resting"
+                    MDListItemSupportingText:
+                        text: "Cover and refrigerate overnight"
+                    MDListItemTertiaryText:
+                        text: "or at least 2 hours"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Preheat Waffle Maker"
+                    MDListItemSupportingText:
+                        text: "a non stick one will not need oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cooking"
+                    MDListItemSupportingText:
+                        text: "Use ladel to pour batter in"
+                    MDListItemTertiaryText:
+                        text: "too much will leak over sides"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cook between 3 1/2 min to 6 min"
+                    MDListItemSupportingText:
+                        text: "Check your waffle maker"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Serve with desired topping"
+                    MDListItemTrailingCheckbox:
+
+
+<Pancakes>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pancakes"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: " 1 1/2 cups all purpose flour"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3 tbsp Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Baking Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/4 tsp Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/8 tsp Ground Nutmeg"
+                    MDListItemSupportingText:
+                        text: "Freshly ground"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 large Eggs"
+                    MDListItemSupportingText:
+                        text: "at room temperature"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 1/4 Cups of Milk"
+                    MDListItemSupportingText:
+                        text: "at room temperture"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Vanilla Extract"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3 tbsp Unsalted Butter"
+                    MDListItemSupportingText:
+                        text: "plus more as needed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Whisk dry ingredients together"
+                    MDListItemSupportingText:
+                        text: "put flour sugar baking powder"
+                    MDListItemTertiaryText:
+                        text: "salt and nutmeg in a bowl and whisk"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "whisk wet ingredients"
+                    MDListItemSupportingText:
+                        text: "beat eggs in serpate bowl"
+                    MDListItemTertiaryText:
+                        text: "then add milk and vanilla"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Melt butter in cast iron skillet"
+                    MDListItemSupportingText:
+                        text: "over medium heat"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "whisk butter into milk mixture"
+                    MDListItemSupportingText:
+                        text: "Add wet ingredents to dry"
+                    MDListItemTertiaryText:
+                        text: "Whisk until smooth"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Keep skillet at medium heat"
+                    MDListItemSupportingText:
+                        text: "ladel 1/4 cup of batter to skillet"
+                    MDListItemTertiaryText:
+                        text: "cook until bubbles break surface"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Flip with spatula"
+                    MDListItemSupportingText:
+                        text: "Cook for about one more minute"
+                    MDListItemTertiaryText:
+                        text: "serve immediately"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Procudure for adding itmes"
+                    MDListItemSupportingText:
+                        text: "once bubbles break, scatter surface"
+                    MDListItemTertiaryText:
+                        text: "with items you want to put in"
+                    MDListItemTrailingCheckbox:
+
+
+<Biscuits>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Biscuits"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 Cups all purpose flour"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Baking Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp granulated Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 tbsp Unsalted Butter"
+                    MDListItemSupportingText:
+                        text: "very cold"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 cups Whole Milk"
+                    MDListItemSupportingText:
+                        text: "butermilk or 2% sub"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "For best results chill butter"
+                    MDListItemSupportingText:
+                        text: "in freezer for 10 to 20 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Preheat oven to 425 degrees F"
+                    MDListItemSupportingText:
+                        text: "line baking sheet with nonstick"
+                    MDListItemTertiaryText:
+                        text: "parchment paper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Combine flour baking powder"
+                    MDListItemSupportingText:
+                        text: "sugar and salt in a large bowl"
+                    MDListItemTertiaryText:
+                        text: "and mix"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Grate butter into Flour mixture"
+                    MDListItemSupportingText:
+                        text: "using grater or food processor"
+                    MDListItemTertiaryText:
+                        text: "and mix"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Combine until mixture looks"
+                    MDListItemSupportingText:
+                        text: "like crumbs"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "And milk, use spatula to stir"
+                    MDListItemSupportingText:
+                        text: "until combined"
+                    MDListItemTertiaryText:
+                        text: "Do not overwork dough"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Transfer dough to well floured"
+                    MDListItemSupportingText:
+                        text: "surface and use hands to gently"
+                    MDListItemTertiaryText:
+                        text: "work dough together"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Fold dough in half over itself"
+                    MDListItemSupportingText:
+                        text: "gently flatten layers together"
+                    MDListItemTertiaryText:
+                        text: "Rotate dough and repeat 5 times"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Use Hands to flatten dough"
+                    MDListItemSupportingText:
+                        text: "To 1 inch thick, dust 2 3/4"
+                    MDListItemTertiaryText:
+                        text: "inch biscuit cutter with flour"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Making close cuts, press biscuit"
+                    MDListItemSupportingText:
+                        text: "cutter into dough, remove biscuit"
+                    MDListItemSupportingText:
+                        text: "and place on prepared baking sheet"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Repeat until you have gotten"
+                    MDListItemSupportingText:
+                        text: "as many biscuits as possible"
+                    MDListItemSupportingText:
+                        text: "places 1/2 inch apart on baking sheet"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Gently rework dough"
+                    MDListItemSupportingText:
+                        text: "to get another one or two biscuits"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Bake on 425 degrees F"
+                    MDListItemSupportingText:
+                        text: "for 12 minutes or until tops"
+                    MDListItemSupportingText:
+                        text: "are lightly golden brown"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "If desired, brush with"
+                    MDListItemSupportingText:
+                        text: "melted salted butter immediately"
+                    MDListItemSupportingText:
+                        text: "after removing from oven"
+                    MDListItemTrailingCheckbox:
+
+
+<BiscuitsGravy>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Biscuits & Gravy"
+                        font_style: "Headline"
+                        role: "large"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "8 Biscuits"
+                    MDListItemSupportingText:
+                        text: "see recipe for Biscuits"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 pound Sausage"
+                    MDListItemSupportingText:
+                        text: "or sub Sausage patties cut up"
+                    MDListItemSupportingText:
+                        text: "See recipe for Sausage patties"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp and 1 tsp of flour"
+                    MDListItemSupportingText:
+                        text: "all purpose perfered"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 1/2 cups of half and half"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp of Butter"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/8 tsp of dried Thyme"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/8 tsp dried Crushed Red"
+                    MDListItemSupportingText:
+                        text: "Pepper Flakes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Freshly Ground Black Pepper"
+                    MDListItemSupportingText:
+                        text: "to taste"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Brown sausage in large saucepan"
+                    MDListItemSupportingText:
+                        text: "Use paper towel to blot out"
+                    MDListItemSupportingText:
+                        text: "most of the grease from pan"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add flour butter and half and half"
+                    MDListItemSupportingText:
+                        text: "cook on medium-low heat"
+                    MDListItemSupportingText:
+                        text: "stirring often until thckened"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add thyme rosemary and"
+                    MDListItemSupportingText:
+                        text: "red pepper flakes and black pepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Serve over warm biscuits"
+                    MDListItemTrailingCheckbox:
+
+
+
+
+<LoafBread>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Loaf Bread"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 cups warm water"
+                    MDListItemSupportingText:
+                        text: "105 to 115 degrees F"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp active dry yeast"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/4 cup Honey or Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tsp Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Oil"
+                    MDListItemSupportingText:
+                        text: "canola or vegetable"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "4 - 5 1/2 cups flour"
+                    MDListItemSupportingText:
+                        text: "all purpose or bread"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Prepare the dough"
+                    MDListItemSupportingText:
+                        text: "in large bowl mix yeast water and"
+                    MDListItemSupportingText:
+                        text: "a pinch of sugar or honey"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Allow to rest for 5 to 10 minutes"
+                    MDListItemSupportingText:
+                        text: "until foaming and bubbly"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add remaining Sugar or Honey"
+                    MDListItemSupportingText:
+                        text: "salt oil and 3 cups of flour"
+                    MDListItemSupportingText:
+                        text: "Mix to combine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add another cup of flour"
+                    MDListItemSupportingText:
+                        text: "mix to combine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "With mixer running add"
+                    MDListItemSupportingText:
+                        text: "1/2 cup flour to mixure"
+                    MDListItemSupportingText:
+                        text: "Repeat till dough pulls from sides"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Check that dough is smooth"
+                    MDListItemSupportingText:
+                        text: "and elastic slightly sticky to a clean"
+                    MDListItemSupportingText:
+                        text: "finger, if not add more flour"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Knead the Dough"
+                    MDListItemSupportingText:
+                        text: "Mix dough for 4 to 5 minutes on medium"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "First Rise"
+                    MDListItemSupportingText:
+                        text: "grease large bowl with oil"
+                    MDListItemSupportingText:
+                        text: "place dough inside turning to coat"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cover with dish towel"
+                    MDListItemSupportingText:
+                        text: "or plastic wrap and allow to rise"
+                    MDListItemSupportingText:
+                        text: "in a warm place until double in size"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Spray 2 9x5 bread pans"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Punch dough down"
+                    MDListItemSupportingText:
+                        text: "remove the air bubbles"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Divde into two equal portions"
+                    MDListItemSupportingText:
+                        text: "shape each ball into long logs" 
+                    MDListItemSupportingText:
+                        text: "place into greased loaf pans"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Second Rise"
+                    MDListItemSupportingText:
+                        text: "spray plastic wrap with cooking spray"
+                    MDListItemSupportingText:
+                        text: "cover pans"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Allow to rise for 45 minutes"
+                    MDListItemSupportingText:
+                        text: "to 1 hour or until 1 inch above"
+                    MDListItemSupportingText:
+                        text: "the loaf pans. Gently remove cover"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Bake"
+                    MDListItemSupportingText:
+                        text: "preheat oven to 350 F"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Bake for 30 to 33 minutes"
+                    MDListItemSupportingText:
+                        text: "or until golden brown"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Give the top of the loaf"
+                    MDListItemSupportingText:
+                        text: "a gentle tap, it should sound"
+                    MDListItemSupportingText:
+                        text: "hollow"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Invert loafs on cooling rack"
+                    MDListItemSupportingText:
+                        text: "brush tops with butter"
+                    MDListItemSupportingText:
+                        text: "allow to cool for 10 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Slice the loafs"
+                    MDListItemSupportingText:
+                        text: "store in airtight container"
+                    MDListItemSupportingText:
+                        text: "good for 2-3 days room temp"
+                    MDListItemTrailingCheckbox:
+
+<PizzaBombs>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pizza Bombs"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 pound Pizza Dough"
+                    MDListItemSupportingText:
+                        text: "at room temp for an hour"
+                    MDListItemSupportingText:
+                        text: "please see Pizza Dough recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 tsp Marinara sauce"
+                    MDListItemSupportingText:
+                        text: "divided, plus more for serving"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "24 slices of Pepperoni"
+                    MDListItemSupportingText:
+                        text: "please see Pepperoni recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6oz Mozzarella Cheese"
+                    MDListItemSupportingText:
+                        text: "low moisture, cut into 12 pieces"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "4 tbsp Unsalted Butter"
+                    MDListItemSupportingText:
+                        text: "melted"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/4 tsp Garlic Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 Kosher Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/4 cup Parmesan Cheese"
+                    MDListItemSupportingText:
+                        text: "grated"
+                    MDListItemSupportingText:
+                        text: "devided"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 1/2 tsp Italian seasoning"
+                    MDListItemSupportingText:
+                        text: "divided"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Instructions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Arrange rack into middle of oven"
+                    MDListItemSupportingText:
+                        text: "preheat 375 degrees F"
+                    MDListItemSupportingText:
+                        text: "grease 12 cup muffin tin"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Divide pizza dough into 12"
+                    MDListItemSupportingText:
+                        text: "portions, roll each piece into a ball"
+                    MDListItemSupportingText:
+                        text: "flatten each to even 3 to 4 inch round"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "place 1/2 tsp of marinara sauce"
+                    MDListItemSupportingText:
+                        text: "into center of each dough"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Top with a piece of"
+                    MDListItemSupportingText:
+                        text: "mozzarella and 2 slices of"
+                    MDListItemSupportingText:
+                        text: "pepperoni"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Fold edges of the dough"
+                    MDListItemSupportingText:
+                        text: "up and around the filling and pinch"
+                    MDListItemSupportingText:
+                        text: "together forming a ball"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Stir butter garlic and salt"
+                    MDListItemSupportingText:
+                        text: "together in a small bowl"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Dip the pizza balls"
+                    MDListItemSupportingText:
+                        text: "one at a time, turning to coat"
+                    MDListItemSupportingText:
+                        text: "Place seam down in muffin tin"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Sprinkle the top of each"
+                    MDListItemSupportingText:
+                        text: "with 1/4 tsp of parmesan cheese"
+                    MDListItemSupportingText:
+                        text: "and a pinch of italian seasoning"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Bake until golden brown"
+                    MDListItemSupportingText:
+                        text: "15 to 20 minutes"
+                    MDListItemSupportingText:
+                        text: "remove from pan to cool for 5 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Serve with marinara sauce"
+                    MDListItemTrailingCheckbox: 
+
+
+<Pepperoni>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pepperoni"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "7 pounds of Pork Butt"
+                    MDListItemSupportingText:
+                        text: "fat included, cubed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3 pounds Lean Beef Chuck"
+                    MDListItemSupportingText:
+                        text: "round or shank, cubed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "5 tbsp Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Cayenne Pepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3 tbsp Sweet Paprika"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Anise Seed"
+                    MDListItemSupportingText:
+                        text: "crushed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Minced Garlic"
+                    MDListItemSupportingText:
+                        text: "very fine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 cup Dry Red Wine"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Ascorbix Acid"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp of Saltpepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "4 feet sauage casing"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp White Vinegar"
+                    MDListItemSupportingText:
+                        text: "more or less"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Separtely grind pork and beef"
+                    MDListItemSupportingText:
+                        text: "through the coarse disk"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Mix meat together with salt sugar"
+                    MDListItemSupportingText:
+                        text: "cayenne paprika anise seed garlic"
+                    MDListItemSupportingText:
+                        text: "red wine ascorbic acid saltpepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Spread mixture on large pan"
+                    MDListItemSupportingText:
+                        text: "cover loosely with waxed paper"
+                    MDListItemSupportingText:
+                        text: "cure in refigerator for 24 hours"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Prepare the casing"
+                    MDListItemSupportingText:
+                        text: "rinse casing under cool running water"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place casing in a bowl of"
+                    MDListItemSupportingText:
+                        text: "cool water and let soak for 30 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "rinse casing under cool water"
+                    MDListItemSupportingText:
+                        text: "slip 1 end over faucet adn turn water"
+                    MDListItemSupportingText:
+                        text: "on slowly then more focefully"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pinpoint if the casing has any breaks"
+                    MDListItemHeadlineText:
+                        text: "if so cut out that portion"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place casing in bowl of water"
+                    MDListItemSupportingText: 
+                        text: "add white vinegar"
+                    MDListItemSupportingText:
+                        text: "1 tbsp per cup of water"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Rinse casing"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Stuff sausage into casing"
+                    MDListItemSupportingText:
+                        text: "twist off into 10 inch links"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Using cotton twine"
+                    MDListItemSupportingText:
+                        text: "tie two links together"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Hang to dry in a space"
+                    MDListItemSupportingText:
+                        text: "that is 50 to 55 degrees F"
+                    MDListItemSupportingText:
+                        text: "with 75 to 80 percent humidity"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText: 
+                        text: "Leave for six to eight weeks"
+                    MDListItemTrailingCheckbox:
+
+
+<Sausage>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Sausage"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 Pound Pork Minced"
+                    MDListItemSupportingText:
+                        text: "sub chicken or turkey"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Dried Ground Sage"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: " 1/2 tsp Dried Thyme"
+                    MDListItemSupportingText:
+                        text: "Crushed with fingers"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp onion powder"
+                    MDListItemSupportingText:
+                        text: "sub more Garlic Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Garlic Powder"
+                    MDListItemSupportingText:
+                        text: "sub more Onion Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsb Black Pepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 tsb Cooking/Kosher Salt"
+                    MDListItemSupportingText:
+                        text: "or 1/2 tsp table salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Sugar"
+                    MDListItemSupportingText:
+                        text: "Optional"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Instructions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Mix ingredients in a large bowl"
+                    MDListItemSupportingText:
+                        text: "evenly mix"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Store in an airtight container"
+                    MDListItemSupportingText:
+                        text: "store in fridge or freezer"
+                    MDListItemTrailingCheckbox:
+
+
+<PizzaDough>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pizza Dough"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2-2 1/3 cups Flour"
+                    MDListItemSupportingText:
+                        text: "all purpose or bread flour"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 1/4 tsp Yeast"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 1/2 tsp Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 tsp Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Olive oil"
+                    MDListItemSupportingText:
+                        text: "plus additional"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3/4 cup of Warm Water"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Combine 1 cup flour, instant"
+                    MDListItemSupportingText:
+                        text: "yeast sugar and salt in a large bowl"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Opional add in Garlic powder"
+                    MDListItemSupportingText:
+                        text: "and dired basil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add olive oil and warm water"
+                    MDListItemSupportingText:
+                        text: "and use a wooden spoon to stir well"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add another 1 cup of flour"
+                    MDListItemSupportingText:
+                        text: "stirring until the dough is forming"
+                    MDListItemSupportingText:
+                        text: "a cohesive elastic ball"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add flour as needed"
+                    MDListItemSupportingText:
+                        text: "dough should be slightly sticky"
+                    MDListItemSupportingText:
+                        text: "but still manageable with hands"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Drizzle a serperate large bowl"
+                    MDListItemSupportingText:
+                        text: "generously with olive oil and use"
+                    MDListItemSupportingText:
+                        text: "a pastry brush to brush up sides"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Lightly dust your hands with flour"
+                    MDListItemSupportingText:
+                        text: "and formyour pizza dough into a"
+                    MDListItemSupportingText:
+                        text: "ball and transfer to olive oil bowl"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Roll the pizza dough along the"
+                    MDListItemSupportingText:
+                        text: "inside of bowl until coated with"
+                    MDListItemSupportingText:
+                        text: "olive oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cover with plastic wrap and"
+                    MDListItemSupportingText:
+                        text: "place in warm place and let"
+                    MDListItemSupportingText:
+                        text: "rise for 30 minutes or double size"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Once dough has risen use your"
+                    MDListItemSupportingText:
+                        text: "hands to gently deflate it"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place in a lightly floured bowl"
+                    MDListItemSupportingText:
+                        text: "wrap and place in fidge for later use"
+                    MDListItemTrailingCheckbox:
+
+<ChilliChicken>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Chilli"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Chicken"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "0.6 pounds Chicken Breast"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "7 tbsp Cornflour"
+                    MDListItemSupportingText:
+                        text: "add more if needed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Garlic and Ginger Paste"
+                    MDListItemSupportingText:
+                        text: "please see recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 Egg Whites"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 Spring Onions"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Vegetable Oil"
+                    MDListItemSupportingText:
+                        text: "as needed"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Chicken Marinade"
+                        font_style: "Headline"
+                        role: "small"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Dark Soy Sauce"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Garlic and Ginger Paste"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Sesame Oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText: 
+                        text: "1 tsp Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp White Pepper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Stir Fry Sauce"
+                        font_style: "Headline"
+                        role: "small"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Dark Soy Sauce"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Honey"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp Sriracha"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Lemon Juice"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Prepare your chicken breasts"
+                    MDListItemSupportingText:
+                        text: "by cutting into thin strips"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place chicken into a large bowl"
+                    MDListItemSupportingText:
+                        text: "add marinade ingredients"
+                    MDListItemSupportingText:
+                        text: "leave rest for 10 min to 2 hours"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Combine stir fry sauce"
+                    MDListItemSupportingText:
+                        text: "ingredients in a small bowl."
+                    MDListItemSupportingText:
+                        text: "Put aside for later"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add egg white into the chicken"
+                    MDListItemSupportingText:
+                        text: "and mix well"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pour cornflour into the chicken"
+                    MDListItemSupportingText:
+                        text: "mix thoroughtly until each piece"
+                    MDListItemSupportingText:
+                        text: "is coated"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Heat oil in a wok at 350 degree F"
+                    MDListItemSupportingText:
+                        text: "fry the pieces for 2 to 3 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "In a clean pan add a tbsp of oil"
+                    MDListItemSupportingText:
+                        text: "and fry the Garlic and Ginger paste"
+                    MDListItemSupportingText:
+                        text: "for 5 to 10 seconds"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add Stir Fry ingredients"
+                    MDListItemSupportingText:
+                        text: "and stir for 30 seconds or until"
+                    MDListItemSupportingText:
+                        text: "thickened"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add the chicken and mix in the"
+                    MDListItemSupportingText:
+                        text: "sweet chilli sauce until evenly"
+                    MDListItemSupportingText:
+                        text: "coated"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Sprinkle with chopped spring"
+                    MDListItemSupportingText:
+                        text: "onion and serve immedately"
+
+<GarlicAndGingerPaste>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Garlic and"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ginger Paste"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 oz fresh Gralic Cloves"
+                    MDListItemSupportingText:
+                        text: "peeled by weight"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 oz fresh Ginger"
+                    MDListItemSupportingText:
+                        text: "freshly peeled by weight"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/3 cup Vegetable Oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Water"
+                    MDListItemSupportingText:
+                        text: "enough to make a puree"
+                    MDListItemSupportingText:
+                        text: "about 1/3 cup"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Instructions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Combine garlic ginger"
+                    MDListItemSupportingText:
+                        text: "oil and salt in a blender"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Puree"
+                    MDListItemSupportingText:
+                        text: "adding water ad needed to get"
+                    MDListItemSupportingText:
+                        text: "the mixture to blend thoroughly"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Store in the fridge."
+                    MDListItemTrailingCheckbox:
+
+<PizzaGrilledCheese>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pizza Grilled"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cheese"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 cup Unsalted Butter"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp grated Parmesan Cheese"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Garlic Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Italian Seasoning"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "8 slices White Bread"
+                    MDListItemSupportingText:
+                        text: "see Loaf Bread recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "12 slices Mozzarella Cheese"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 oz Pepperoni"
+                    MDListItemSupportingText:
+                        text: "See Pepperoni recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pizza Sauce"
+                    MDListItemSupportingText:
+                        text: "warm, see pizza sauce recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place butter parmesan cheese"
+                    MDListItemSupportingText:
+                        text: "garlic powder and Italian seasoning"
+                    MDListItemSupportingText:
+                        text: "in a bowl and mix together until smooth"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Spread the butter mixture on"
+                    MDListItemSupportingText:
+                        text: "one side of the bread slices"
+                    MDListItemSupportingText:
+                        text: "Place butte side up on paper towel"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Heat skillet on medium-low heat"
+                    MDListItemHeadlineText:
+                        text: "place bread butter side down"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "place a slice of mozzarella"
+                    MDListItemSupportingText:
+                        text: "on bread, add 6 pepperoni slices"
+                    MDListItemSupportingText:
+                        text: "repeat once"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add one more slice of Mozzarella"
+                    MDListItemSupportingText:
+                        text: "Place on top bread butter side up"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "place lid on skillet, melt cheese"
+                    MDListItemSupportingText:
+                        text: "cook 3 to 5 minutes till golden brown"
+                    MDListItemSupportingText:
+                        text: "flip, relplace lid"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "cook until second side is"
+                    MDListItemSupportingText:
+                        text: "golden brown"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Serve with pizza sauce"
+                    MDListItemTrailingCheckbox:
+
+<PizzaSauce>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Pizza Sauce"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 oz Tomato Paste"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "15oz Tomato Sauce"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText: 
+                        text: "1-2 tbsp dried Oregano"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Italian Seasoning"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Garlic Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tsp Onion Powder"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/2 tbsp Garlic Salt"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1/4 tsp Black Pepper"
+                    MDListItemSupportingText:
+                        text: "freshly ground"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tsp Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Mix tomato paste and sauce"
+                    MDListItemSupportingText:
+                        text: "together until smooth"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add the rest of the ingredients"
+                    MDListItemSupportingText:
+                        text: "mix until smooth"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Store in airtight container"
+                    MDListItemSupportingText:
+                        text: "refridgerate"
+                    MDListItemTrailingCheckbox:
+
+<CreamsicleCookies>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Creamsicle"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Cookies"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "15.25 oz White Cake Mix"
+                    MDListItemSupportingText:
+                        text: "see White Cake Mix recipe"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "3 oz orange jello"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 tbsp Orange Zest"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "8 tbsp Salted Butter"
+                    MDListItemSupportingText:
+                        text: "softened"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 large Eggs"
+                    MDListItemSupportingText:
+                        text: "room temp"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "11 oz White Chocolate chips"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Directions"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Preheat oven to 350 degrees F"
+                    MDListItemSupportingText:
+                        text: "line two baing sheets with"
+                    MDListItemSupportingText:
+                        text: "parchment paper"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Mix cake mix orange jello and"
+                    MDListItemSupportingText:
+                        text: "orange zest until fully combined"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Add butter and eggs to the bowl"
+                    MDListItemSupportingText:
+                        text: "Use hand mixer or stand mixer"
+                    MDListItemSupportingText:
+                        text: "to beat together about 2 minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Once combined add white"
+                    MDListItemSupportingText:
+                        text: "chocolate chips and fold into"
+                    MDListItemSupportingText:
+                        text: "the dough not with mixer"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Use a 1 1/2 tbsp cookie scoop"
+                    MDListItemSupportingText:
+                        text: "to scoop out dough, roll into ball"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Place balls 2 inches apart"
+                    MDListItemSupportingText:
+                        text: "Bake for 10 to 13 Minutes"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Once edges are set remove"
+                    MDListItemSupportingText:
+                        text: "from oven and let cool for 10 minutes"
+                    MDListItemTrailingCheckbox:
+
+<WhiteCakeMix>
+    MDBoxLayout:
+        orientation: "vertical"
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+                col_force_default: False
+                spacing: dp(6)
+                adaptive_height: True
+                padding: dp(6)
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "White Cake"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Mix"
+                        font_style: "Display"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "Ingredients"
+                        font_style: "Headline"
+                        role: "medium"
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "6 tbsp Unsalted Butter"
+                    MDListItemSupportingText:
+                        text: "softened to room temp"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2/3 cup Canola Oil"
+                    MDListItemSupportingText:
+                        text: "sub vegetable oil"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 cups Sugar"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "1 tbsp clear Vanilla Extract"
+                    MDListItemTrailingCheckbox:
+                MDListItem:
+                    MDListItemHeadlineText:
+                        text: "2 2/3 Cups All Purpose Flour"
+                    MDListItemSupportingText:
+                        text: "plus 2 tbsp"
+                    MDListItemTrailingCheckbox:
+                
+
+
+
+MDBoxLayout:
+    orientation: "vertical"
+    md_bg_color: self.theme_cls.backgroundColor
+
+    MDScreenManager:
+        id: screen_manager
+
+        Home:
+            name: "Home"
+
+        Cookbook:
+            name: "Cookbook"
+
+        Search:
+            name: "Search"
+
+        About:
+            name: "About"
+
+        Login:
+            name: "Account"
+
+        SearchResults:
+            name: "SearchResults"
+
+        Breakfast:
+            name: "Breakfast"
+
+        Lunch:
+            name: "Lunch"
+
+        Dinner:
+            name: "Dinner"
+
+        Desserts:
+            name: "Desserts"
+
+        Drinks:
+            name: "Drinks"
+
+        Breads:
+            name: "Breads"
+
+        Meats:
+            name: "Meats"
+
+        Sauces:
+            name: "Sauces"
+
+        SausagePatties:
+            name: "SausagePatties"
+
+        Waffles:
+            name: "Waffles"
+
+        Pancakes:
+            name: "Pancakes"
+
+        Biscuits:
+            name: "Biscuits"
+
+        BiscuitsGravy:
+            name: "BiscuitsGravy"
+
+        LoafBread:
+            name: "LoafBread"
+
+        PizzaBombs:
+            name: "PizzaBombs"
+
+        PizzaDough:
+            name: "PizzaDough"
+
+        Pepperoni:
+            name: "Pepperoni"
+
+        Sausage:
+            name: "Sausage"
+
+        ChilliChicken:
+            name: "ChilliChicken"
+
+        GarlicAndGingerPaste:
+            name: "GarlicAndGingerPaste"
+
+        PizzaGrilledCheese:
+            name: "PizzaGrilledCheese"
+
+        PizzaSauce:
+            name: "PizzaSauce"
+
+        CreamsicleCookies:
+            name: "CreamsicleCookies"
+
+        WhiteCakeMix:
+            name: "WhiteCakeMix"
+
+
+
+    MDNavigationBar:
+        on_switch_tabs: app.on_switch_tabs(*args)
+
+        BaseMDNavigationItem
+            icon: "home"
+            text: "Home"
+            active: True
+
+        BaseMDNavigationItem
+            icon: "chef-hat"
+            text: "Cookbook"
+
+        BaseMDNavigationItem
+            icon: "magnify"
+            text: "Search"
+
+        BaseMDNavigationItem
+            icon: "information"
+            text: "About"
+
+        BaseMDNavigationItem
+            icon: "account"
+            text: "Account"
